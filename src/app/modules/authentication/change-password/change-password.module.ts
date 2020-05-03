@@ -1,12 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
-import { IonicModule } from '@ionic/angular';
-
 import { ChangePasswordPage } from './change-password.page';
-import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from 'src/app/core/core.module';
 
 const routes: Routes = [
   {
@@ -17,15 +12,11 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    HttpClientModule,
-    ReactiveFormsModule,
+    CoreModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ChangePasswordPage],
   exports: [ChangePasswordPage],
   entryComponents: [ChangePasswordPage]
 })
-export class ChangePasswordPageModule {}
+export class ChangePasswordPageModule { }

@@ -25,10 +25,9 @@ export class LoginPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onLogin(form: NgForm) {
-    console.log(form);
     const data: LoginModel = {
       email: form.value.email,
       password: form.value.password

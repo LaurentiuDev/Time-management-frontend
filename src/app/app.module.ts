@@ -8,7 +8,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthService } from './shared/services/auth.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
@@ -21,15 +20,16 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
-    IonicModule.forRoot(),
     BrowserAnimationsModule,
+    AppRoutingModule,
+    IonicModule.forRoot(
+      //{mode: 'ios'}
+    ),
     MatSnackBarModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    AuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
@@ -37,4 +37,4 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   bootstrap: [AppComponent],
   exports: [],
 })
-export class AppModule {}
+export class AppModule { }

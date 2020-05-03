@@ -1,13 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
-import { IonicModule } from '@ionic/angular';
-
 import { RegisterPage } from './register.page';
-import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { CoreModule } from 'src/app/core/core.module';
 
 const routes: Routes = [
   {
@@ -18,14 +12,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    HttpClientModule,
-    ReactiveFormsModule,
+    CoreModule,
     RouterModule.forChild(routes)
   ],
   declarations: [RegisterPage],
-  providers: [AuthService]
 })
-export class RegisterPageModule {}
+export class RegisterPageModule { }
