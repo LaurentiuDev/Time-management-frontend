@@ -82,7 +82,7 @@ export class RegisterPage implements OnInit {
     );
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public onRegister(form: NgForm) {
     console.log(form);
@@ -95,8 +95,8 @@ export class RegisterPage implements OnInit {
       confirmPassword: form.value.confirmPassword
     };
 
-    this.authService.register(data).subscribe(response => {
-      this.router.navigate([`${APPROUTES.login}`]);
+    this.authService.register(data).subscribe((response) => {
+      this.router.navigate([`${APPROUTES.tabs}/${APPROUTES.task}`]);
     });
   }
 
