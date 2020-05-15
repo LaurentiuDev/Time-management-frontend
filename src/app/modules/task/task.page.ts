@@ -46,7 +46,6 @@ export class TaskPage implements OnInit {
   }
 
   async onRemoveItem(id: string) {
-    console.log(1)
     const alert = await this.alertController.create({
       header: 'Confirmation',
       message: 'Do you want to delete the selected item ?',
