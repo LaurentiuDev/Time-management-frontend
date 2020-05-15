@@ -8,7 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
 import { HttpErrorInterceptor } from './shared/interceptors/error.interceptor';
@@ -16,6 +16,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DatePipe } from '@angular/common';
 import { CalendarModule } from 'ion2-calendar';
 import { AppSettings } from './shared/settings/appsettings.service';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { createTranslateLoader } from './core/translate-loader-factory';
 
 export function initAppSettings(appSettings: AppSettings) {
   return () => appSettings.load();
@@ -26,14 +28,21 @@ export function initAppSettings(appSettings: AppSettings) {
   entryComponents: [],
   imports: [
     BrowserModule,
-    HttpClientModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     CalendarModule,
     AppRoutingModule,
     IonicModule.forRoot(
       //{mode: 'ios'}
     ),
     MatSnackBarModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
   ],
   providers: [
     DatePipe,
