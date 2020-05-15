@@ -24,3 +24,38 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.ion-color-authentication {
+  --ion-color-base: var(--ion-color-authentication);
+  --ion-color-base-rgb: var(--ion-color-authentication-rgb);
+  --ion-color-contrast: var(--ion-color-authentication-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-authentication-contrast-rgb);
+}
+
+.timepicker {
+  .timepicker__header {
+    background-color: #3ab855 !important;
+  }
+
+  .clock-face__clock-hand {
+    background-color: #3ab855 !important;
+
+    &::after {
+      background-color: #3ab855 !important;
+    }
+
+    &::before {
+      border-color: #3ab855 !important;
+    }
+  }
+
+  .clock-face__number {
+    > span.active {
+      background-color: #3ab855 !important;
+    }
+  }
+
+  button:not(.timepicker-dial__item) {
+    color: #3ab855 !important;
+  }
+}

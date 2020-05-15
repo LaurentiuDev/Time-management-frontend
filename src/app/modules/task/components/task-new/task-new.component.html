@@ -1,0 +1,24 @@
+<ion-header translucent>
+  <ion-toolbar color="warning">
+    <ion-title>Add task</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeDialog()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form [formGroup]="formGroup">
+    <app-task-form formControlName="form"></app-task-form>
+  </form>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button
+      color="warning"
+      [disabled]="formGroup.invalid"
+      (click)="save()"
+    >
+      <ion-icon name="checkmark-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

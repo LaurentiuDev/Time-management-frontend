@@ -1,0 +1,86 @@
+<div [formGroup]="form">
+  <ion-grid lines="full" class="ion-no-margin ion-no-padding">
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea
+        formControlName="description"
+        placeholder="Enter more information here..."
+      ></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Domain</ion-label>
+      <ion-input type="text" formControlName="domain"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Priority</ion-label>
+      <ion-select
+        (click)="loadFlags()"
+        formControlName="priority"
+        interface="popover"
+      >
+        <ion-select-option
+          *ngFor="let priority of Priority | enumKeyValue"
+          [value]="priority.key"
+        >
+          {{ priority.value }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-row class="ion-padding">
+      <ion-col>
+        <ion-row>
+          <ion-text><h3>Start date</h3></ion-text>
+        </ion-row>
+        <ion-row>
+          <ion-text color="primary" (click)="openStartDateCalendar()">
+            {{ startDate | date: "dd MMM yyyy" }}
+          </ion-text>
+
+          <input
+            [placeholder]="startTime"
+            aria-label="default time"
+            [ngxTimepicker]="startTimeRef"
+            readonly
+            class="time-input"
+            [format]="24"
+          />
+          <ngx-material-timepicker
+            #startTimeRef
+            [defaultTime]="startTime"
+          ></ngx-material-timepicker>
+        </ion-row>
+      </ion-col>
+
+      <ion-col>
+        <ion-row>
+          <ion-text><h3>End date</h3></ion-text>
+        </ion-row>
+        <ion-row>
+          <ion-text color="primary" (click)="openEndDateCalendar()">
+            {{ endDate | date: "dd MMM yyyy" }}
+          </ion-text>
+
+          <input
+            [placeholder]="endTime"
+            aria-label="default time"
+            [ngxTimepicker]="endTimeRef"
+            readonly
+            class="time-input"
+            [format]="24"
+          />
+          <ngx-material-timepicker
+            #endTimeRef
+            [defaultTime]="endTime"
+          ></ngx-material-timepicker>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
