@@ -3,7 +3,6 @@ import {
   FormGroup,
   FormBuilder,
   Validators,
-  NgForm,
   ValidatorFn
 } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -19,7 +18,7 @@ import { ChangePasswordModel } from 'src/app/models/change-password.model';
 export class ChangePasswordPage implements OnInit {
   form: FormGroup;
   @ViewChild('loginForm', { static: true }) loginForm: HTMLFormElement;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService
@@ -42,9 +41,9 @@ export class ChangePasswordPage implements OnInit {
     );
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  onChangePassword(form: NgForm) {
+  onChangePassword(form: FormGroup) {
     console.log(form);
     const data: ChangePasswordModel = {
       oldPassword: form.value.oldPassword,

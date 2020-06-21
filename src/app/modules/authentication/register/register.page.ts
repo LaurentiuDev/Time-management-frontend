@@ -84,7 +84,7 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() { }
 
-  public onRegister(form: NgForm) {
+  public onRegister(form: FormGroup) {
     console.log(form);
     const data: RegisterModel = {
       firstName: form.value.firstName,

@@ -1,6 +1,6 @@
 import { FormComponentBase } from 'src/app/shared/forms/form.component.base';
 import { NG_VALUE_ACCESSOR, NG_VALIDATORS, FormBuilder, Validators } from '@angular/forms';
-import { Component, forwardRef, OnInit, Input } from '@angular/core';
+import { Component, forwardRef, OnInit, Input, ViewChild } from '@angular/core';
 import { Task } from 'src/app/models/task.model';
 import { TaskFormValues } from './task-form-values.model';
 import { DatePipe } from '@angular/common';
@@ -60,9 +60,9 @@ export class TaskFormComponent extends FormComponentBase<Task, TaskFormValues> i
   }
 
   constructor(
-    public modalCtrl: ModalController,
-    private readonly formBuilder: FormBuilder,
-    private readonly datePipe: DatePipe,
+    private modalController: ModalController,
+    private formBuilder: FormBuilder,
+    private datePipe: DatePipe,
   ) {
     super();
   }
@@ -75,35 +75,32 @@ export class TaskFormComponent extends FormComponentBase<Task, TaskFormValues> i
       priority: ['', [Validators.required]],
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
-      completed: [false]
+      startTime: ['', [Validators.required]],
+      endTime: ['', [Validators.required]],
+      completed: [false],
+      subTasks: []
     });
     if (!this.model) {
-      this.startTime = this.datePipe.transform(new Date(), 'H:mm a').toString();
-      this.endTime = this.datePipe.transform(new Date().setHours(new Date().getHours() + 1), 'H:mm a').toString();
+      this.startTime = this.datePipe.transform(new Date(), 'H:mm').toString();
+      this.endTime = this.datePipe.transform(new Date().setHours(new Date().getHours() + 1), 'H:mm').toString();
       this.startDate = this.getDateTime(new Date(), this.startTime);
       this.endDate = this.getDateTime(new Date(), this.endTime);
     } else {
       this.startDate = new Date(this.model.startDate);
       this.endDate = new Date(this.model.endDate);
-      this.startTime = this.datePipe.transform(this.startDate, 'H:mm a').toString();
-      this.endTime = this.datePipe.transform(this.endDate, 'H:mm a').toString();
+      this.startTime = this.datePipe.transform(this.startDate, 'H:mm').toString();
+      this.endTime = this.datePipe.transform(this.endDate, 'H:mm').toString();
     }
 
     this.form.patchValue({
       startDate: this.startDate,
-      endDate: this.endDate
+      endDate: this.endDate,
+      startTime: this.startTime,
+      endTime: this.endTime
     });
   }
 
-  private getDateTime(date: Date, time: string): Date {
-    const timeArray = time.split(':');
-    const hours = Number(timeArray[0]);
-    const minutes = Number(timeArray[1].split(' ')[0]);
-    date.setHours(hours, minutes, 0, 0);
-    return date;
-  }
-
-  loadFlags() {
+  public loadFlags() {
     setTimeout(() => {
       const popoverRef = document.getElementsByClassName('item in-list ion-activatable ion-focusable item-label hydrated');
 
@@ -160,7 +157,7 @@ export class TaskFormComponent extends FormComponentBase<Task, TaskFormValues> i
       color: 'dark'
     };
 
-    const myCalendar = await this.modalCtrl.create({
+    const myCalendar = await this.modalController.create({
       component: CalendarModal,
       componentProps: { options }
     });
@@ -170,6 +167,14 @@ export class TaskFormComponent extends FormComponentBase<Task, TaskFormValues> i
     const event: any = await myCalendar.onDidDismiss();
     const date: CalendarResult = event.data;
 
+    return date;
+  }
+
+  private getDateTime(date: Date, time: string): Date {
+    const timeArray = time.split(':');
+    const hours = Number(timeArray[0]);
+    const minutes = Number(timeArray[1].split(' ')[0]);
+    date.setHours(hours, minutes, 0, 0);
     return date;
   }
 }

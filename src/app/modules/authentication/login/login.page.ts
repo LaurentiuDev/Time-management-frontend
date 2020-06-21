@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginModel } from '../../../models/login.model';
 import { AuthService } from '../../../shared/services/auth.service';
 import { Router } from '@angular/router';
@@ -27,7 +27,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() { }
 
-  onLogin(form: NgForm) {
+  onLogin(form: FormGroup) {
     const data: LoginModel = {
       email: form.value.email,
       password: form.value.password

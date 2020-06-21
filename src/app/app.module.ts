@@ -18,6 +18,7 @@ import { CalendarModule } from 'ion2-calendar';
 import { AppSettings } from './shared/settings/appsettings.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { createTranslateLoader } from './core/translate-loader-factory';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 export function initAppSettings(appSettings: AppSettings) {
   return () => appSettings.load();
@@ -49,6 +50,7 @@ export function initAppSettings(appSettings: AppSettings) {
     StatusBar,
     SplashScreen,
     AppSettings,
+    LocalNotifications,
     {
       provide: APP_INITIALIZER,
       useFactory: initAppSettings,

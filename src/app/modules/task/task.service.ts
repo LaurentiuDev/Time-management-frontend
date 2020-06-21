@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { tap, catchError } from 'rxjs/operators';
 import { SieveModel } from 'src/app/models/sieve.model';
 import { Sort } from '@angular/material/sort';
+import { SubTask } from 'src/app/models/sub-task.model';
 
 @Injectable({
   providedIn: 'root',
@@ -40,20 +41,20 @@ export class TaskService extends CrudServiceBase<Task> {
     return of(this._store.getValue().tasks);
   }
 
-  get count(): Observable<number> {
-    return of(this._store.getValue().count);
+  get count(): number {
+    return this._store.getValue().count;
   }
 
   get loading(): Observable<boolean> {
     return of(this._store.getValue().loading);
   }
 
-  get page(): Observable<number> {
-    return of(this._store.getValue().page);
+  get page(): number {
+    return this._store.getValue().page;
   }
 
-  get pageSize(): Observable<number> {
-    return of(this._store.getValue().pageSize);
+  get pageSize(): number {
+    return this._store.getValue().pageSize;
   }
 
   get sorts(): Observable<string> {
@@ -77,7 +78,14 @@ export class TaskService extends CrudServiceBase<Task> {
     super(dataService, toastController);
   }
 
-  getTasks() {
+  getTasks(isLoadMore?: boolean) {
+    if (isLoadMore) {
+      this.store = {
+        ...this.store,
+        pageSize: this.store.pageSize + 10
+      };
+    }
+
     const sieveModel: SieveModel = this.getSieveModel(this.store);
 
     return this.getAll(sieveModel).pipe(
@@ -85,7 +93,7 @@ export class TaskService extends CrudServiceBase<Task> {
         this.store = {
           ...this.store,
           tasks: data.items,
-          count: data.count,
+          count: data.items.length,
           loading: false
         };
         this._store.next(this.store);

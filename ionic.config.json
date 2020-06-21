@@ -1,5 +1,7 @@
 {
   "name": "microday-frontend",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

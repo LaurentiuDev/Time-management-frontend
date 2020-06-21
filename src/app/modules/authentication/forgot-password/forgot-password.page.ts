@@ -3,13 +3,9 @@ import {
   FormGroup,
   FormBuilder,
   Validators,
-  NgForm,
-  ValidatorFn
 } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { LoginModel } from 'src/app/models/login.model';
 import { Constants } from 'src/app/shared/utils/data.constants';
-import { ChangePasswordModel } from 'src/app/models/change-password.model';
 
 @Component({
   selector: 'app-forgot-password',
@@ -39,9 +35,9 @@ export class ForgotPasswordPage implements OnInit {
     );
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  onGeneratePasswordResetLink(form: NgForm) {
+  onGeneratePasswordResetLink(form: FormGroup) {
     console.log(form);
     // const data: ChangePasswordModel = {
     //   oldPassword: form.value.oldPassword,

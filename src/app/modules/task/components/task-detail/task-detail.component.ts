@@ -38,6 +38,7 @@ export class TaskDetailComponent {
     task.description = taskForm.description;
     task.domain = taskForm.domain;
     task.priority = taskForm.priority;
+    task.completed = taskForm.completed;
     task.startDate = taskForm.startDate;
     task.endDate = taskForm.endDate;
 
