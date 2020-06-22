@@ -1,0 +1,15 @@
+<ion-card>
+  <form [formGroup]="formGroup">
+    <app-task-form formControlName="form"></app-task-form>
+  </form>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button
+      color="warning"
+      [disabled]="formGroup.invalid"
+      (click)="save()"
+    >
+      <ion-icon name="checkmark-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-card>
