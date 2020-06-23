@@ -20,6 +20,9 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { createTranslateLoader } from './core/translate-loader-factory';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
+
 export function initAppSettings(appSettings: AppSettings) {
   return () => appSettings.load();
 }
@@ -44,6 +47,7 @@ export function initAppSettings(appSettings: AppSettings) {
         deps: [HttpClient],
       },
     }),
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     DatePipe,

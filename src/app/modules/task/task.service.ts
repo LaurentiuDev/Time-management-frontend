@@ -11,6 +11,7 @@ import { tap, catchError } from 'rxjs/operators';
 import { SieveModel } from 'src/app/models/sieve.model';
 import { Sort } from '@angular/material/sort';
 import { SubTask } from 'src/app/models/sub-task.model';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -110,6 +111,8 @@ export class TaskService extends CrudServiceBase<Task> {
   }
 
   addTask(task: Task) {
+    const tokenDecode = jwt_decode(localStorage.getItem('token'));
+    task.userId = tokenDecode.sub;
     return this.add(task).pipe(
       tap((data) => {
         this.getTasks().subscribe();

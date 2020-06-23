@@ -1,0 +1,15 @@
+.avatar {
+  margin: auto;
+  width: 100px;
+  height: 100px;
+}
+
+ion-list-header{
+  display:block;
+  text-align: center;
+  ion-label {
+    font-weight: 400;
+    font-size: 22px;
+    text-transform: uppercase;
+  }
+}
