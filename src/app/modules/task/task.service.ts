@@ -89,6 +89,10 @@ export class TaskService extends CrudServiceBase<Task> {
 
     const sieveModel: SieveModel = this.getSieveModel(this.store);
 
+    const tokenDecode = jwt_decode(localStorage.getItem('token'));
+
+    sieveModel.filters += `userId==${tokenDecode.sub}`;
+
     return this.getAll(sieveModel).pipe(
       tap((data) => {
         this.store = {

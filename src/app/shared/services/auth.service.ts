@@ -69,6 +69,13 @@ export class AuthService {
       }));
   }
 
+  public signInWithGoogle() {
+    return this.http.post(
+      `${environment.url}signin-google`,
+      { observe: 'response' }
+    )
+  }
+
   /**
    * return whether the user is authenticated
    */
