@@ -95,21 +95,15 @@
           </ion-col>
 
           <ion-col>
-            <ion-fab-button color="secondary">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </ion-fab-button>
+            <app-twitter-login [action]="'connect'" (LoginSuccessOrFailed)="socialLoginDone($event)"></app-twitter-login>
           </ion-col>
 
           <ion-col>
-            <ion-fab-button color="primary">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </ion-fab-button>
+            <app-facebook-login [action]="'connect'" (LoginSuccessOrFailed)="socialLoginDone($event)"></app-facebook-login>
           </ion-col>
 
           <ion-col>
-            <ion-fab-button color="danger" (click)="signInWithGoogle()">
-              <ion-icon name="logo-google"></ion-icon>
-            </ion-fab-button>
+            <app-google-login [action]="'connect'" (LoginSuccessOrFailed)="socialLoginDone($event)"></app-google-login>
           </ion-col>
         </ion-row>
       </ion-card-content>

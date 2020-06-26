@@ -4,7 +4,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthenticationService } from 'src/app/shared/services/auth.service';
 import { Constants } from 'src/app/shared/utils/data.constants';
 
 @Component({
@@ -18,7 +18,7 @@ export class ForgotPasswordPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authenticationService: AuthenticationService
   ) {
     this.form = this.formBuilder.group(
       {
@@ -46,7 +46,7 @@ export class ForgotPasswordPage implements OnInit {
     // };
     const email: string = form.value.email;
 
-    this.authService.generatePasswordResetLink(email).subscribe(
+    this.authenticationService.generatePasswordResetLink(email).subscribe(
       result => {
         console.log(result);
       }

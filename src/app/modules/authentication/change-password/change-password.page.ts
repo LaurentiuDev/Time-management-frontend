@@ -5,7 +5,7 @@ import {
   Validators,
   ValidatorFn
 } from '@angular/forms';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthenticationService } from 'src/app/shared/services/auth.service';
 import { LoginModel } from 'src/app/models/login.model';
 import { Constants } from 'src/app/shared/utils/data.constants';
 import { ChangePasswordModel } from 'src/app/models/change-password.model';
@@ -21,7 +21,7 @@ export class ChangePasswordPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authenticationService: AuthenticationService
   ) {
     this.form = this.formBuilder.group(
       {
@@ -51,7 +51,7 @@ export class ChangePasswordPage implements OnInit {
       confirmPassword: form.value.confirmPassword
     };
 
-    this.authService.changePassword(data).subscribe(
+    this.authenticationService.changePassword(data).subscribe(
       result => {
         console.log(result);
       }

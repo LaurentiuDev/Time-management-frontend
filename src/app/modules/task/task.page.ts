@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthenticationService } from 'src/app/shared/services/auth.service';
 import { Router } from '@angular/router';
 import { ModalController, AlertController, Platform } from '@ionic/angular';
 import { TaskNewComponent } from './components/task-new/task-new.component';
@@ -18,7 +18,7 @@ export class TaskPage implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   constructor(
-    private authService: AuthService,
+    private authenticationService: AuthenticationService,
     private router: Router,
     private modalController: ModalController,
     public taskService: TaskService,
@@ -113,7 +113,7 @@ export class TaskPage implements OnInit, OnDestroy {
   }
 
   logout() {
-    this.authService.logout();
+    this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
 }

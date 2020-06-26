@@ -7,12 +7,13 @@ import { RegisterModel } from 'src/app/models/register.model';
 import { environment } from 'src/environments/environment';
 import { ChangePasswordModel } from 'src/app/models/change-password.model';
 import { AuthResponse } from 'src/app/models/auth-response.model';
+import { User } from 'src/app/models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class AuthService {
+export class AuthenticationService {
   private authenticated = false;
 
   constructor(private http: HttpClient) { }
@@ -69,11 +70,15 @@ export class AuthService {
       }));
   }
 
-  public signInWithGoogle() {
-    return this.http.post(
-      `${environment.url}signin-google`,
-      { observe: 'response' }
-    )
+  // public signInWithGoogle() {
+  //   return this.http.post(
+  //     `${environment.url}api/auth/external-login`,
+  //     { observe: 'response' }
+  //   )
+  // }
+
+  public currentUser() {
+    return this.http.get<User>(`${environment.url}api/auth/current-user`).toPromise();
   }
 
   /**
@@ -90,7 +95,7 @@ export class AuthService {
     return this.authenticated;
   }
 
-  private authenticate(isAuthorized: boolean) {
+  public authenticate(isAuthorized: boolean) {
     localStorage.setItem('isAuthenticated', String(isAuthorized));
     this.authenticated = isAuthorized;
   }

@@ -7,7 +7,7 @@ import {
   ValidatorFn
 } from '@angular/forms';
 import { RegisterModel } from '../../../models/register.model';
-import { AuthService } from '../../../shared/services/auth.service';
+import { AuthenticationService } from '../../../shared/services/auth.service';
 import { maxLengthValidator } from 'src/app/shared/validators/max-length.validator';
 import { Constants } from 'src/app/shared/utils/data.constants';
 import { Router } from '@angular/router';
@@ -24,7 +24,7 @@ export class RegisterPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
+    private authenticationService: AuthenticationService,
     private router: Router
   ) {
     this.form = this.formBuilder.group(
@@ -95,7 +95,7 @@ export class RegisterPage implements OnInit {
       confirmPassword: form.value.confirmPassword
     };
 
-    this.authService.register(data).subscribe((response) => {
+    this.authenticationService.register(data).subscribe((response) => {
       this.router.navigate([`${APPROUTES.tabs}/${APPROUTES.task}`]);
     });
   }
