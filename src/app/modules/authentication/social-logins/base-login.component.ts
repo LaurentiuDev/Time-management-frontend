@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 export class BaseLoginComponent {
   protected authWindow: Window;
   protected listener: any;
-  public isOpen: boolean = false;
+  public isOpen = false;
 
   @Input() public action: 'add' | 'connect';
   @Output() public LoginSuccessOrFailed: EventEmitter<LoginResult> = new EventEmitter();
@@ -17,7 +17,7 @@ export class BaseLoginComponent {
       if (window.addEventListener) {
         window.addEventListener('message', this.listener, false);
       } else {
-        (<any>window).attachEvent('onmessage', this.listener);
+        (window as any).attachEvent('onmessage', this.listener);
       }
     }
   }
@@ -27,14 +27,14 @@ export class BaseLoginComponent {
       if (window.removeEventListener) {
         window.removeEventListener('message', this.listener, false);
       } else {
-        (<any>window).detachEvent('onmessage', this.listener);
+        (window as any).detachEvent('onmessage', this.listener);
       }
     }
   }
 
   showPopup() {
     if (window !== undefined) {
-      var medium = this.pwaHelper.isPwa() ? 'pwa' : 'web';
+      const medium = this.pwaHelper.isPwa() ? 'pwa' : 'web';
 
       // When the pwa is installed, and the app is visited from a browser,
       // Chrome will open the PWA instead of the current medium
@@ -43,7 +43,7 @@ export class BaseLoginComponent {
       // https://stackoverflow.com/questions/55452230/why-window-open-displays-a-blank-screen-in-a-desktop-pwa-looks-obfuscated
 
       this.isOpen = true;
-      var timer = setInterval(() => {
+      const timer = setInterval(() => {
         if (this.authWindow.closed) {
           this.isOpen = false;
           clearInterval(timer);
@@ -55,16 +55,16 @@ export class BaseLoginComponent {
   handleMessage(event: Event) {
     const message = event as MessageEvent;
     // Only trust messages from the below origin.
-    //if (!environment.urlFront.startsWith(message.origin)) return;
+    // if (!environment.urlFront.startsWith(message.origin)) return;
 
     // Filter out Augury
     if (message.data.messageSource != null)
       if (message.data.messageSource.indexOf('AUGURY_') > -1) return;
     // Filter out any other trash
-    if (message.data == '' || message.data == null) return;
+    if (message.data === '' || message.data == null) return;
 
-    const result = <LoginResult>JSON.parse(message.data);
-    var medium = this.pwaHelper.isPwa() ? 'pwa' : 'web';
+    const result = JSON.parse(message.data) as LoginResult;
+    const medium = this.pwaHelper.isPwa() ? 'pwa' : 'web';
     if ((result.platform === this.platform) && (result.medium === medium)) {
       this.authWindow.close();
       this.LoginSuccessOrFailed.emit(result);

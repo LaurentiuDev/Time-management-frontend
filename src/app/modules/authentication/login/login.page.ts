@@ -4,8 +4,6 @@ import { LoginModel } from '../../../models/login.model';
 import { AuthenticationService } from '../../../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { APPROUTES } from 'src/app/app.routes.strings';
-import { map } from 'rxjs/operators';
-import { User } from 'src/app/models/user.model';
 import { LoginResult } from 'src/app/models/login-result';
 
 @Component({
@@ -15,19 +13,6 @@ import { LoginResult } from 'src/app/models/login-result';
 })
 export class LoginPage implements OnInit {
   form: FormGroup;
-  @ViewChild('loginForm', { static: true }) loginForm: HTMLFormElement;
-
-  private returnUrl: string = '';
-  
-  loginResult: LoginResult = {
-    status: true,
-    medium: '',
-    platform: 'local',
-    user: null,
-    token: "",
-    error: null,
-    errorDescription: null
-  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -63,30 +48,6 @@ export class LoginPage implements OnInit {
       localStorage.setItem('token', JSON.stringify(token));
 
       this.router.navigate([`${APPROUTES.tabs}/${[APPROUTES.task]}`]);
-      // this.authService.currentUser().then((user) => {
-      //   const data: LoginModel = {
-      //     email: user.email,
-      //     password: user.password
-      //   };
-        
-      //   this.authService.login(data).subscribe(
-      //     (response) => {
-      //       this.router.navigate([`${APPROUTES.tabs}/${[APPROUTES.task]}`]);
-      //     }
-      //   );
-      // });
-    } else {
-      this.loginResult = result;
     }
   }
-
-  // signInWithGoogle(): void {
-  //   this.authService.signInWithGoogle().pipe(
-  //     map(profile => {
-  //       return profile;
-  //     })
-  //   ).subscribe();
-  // }
-
-  @Output() loginComplete: EventEmitter<User> = new EventEmitter();
 }

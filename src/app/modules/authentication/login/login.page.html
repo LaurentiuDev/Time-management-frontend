@@ -89,21 +89,31 @@
         <br />
         <ion-row>
           <ion-col>
-            <ion-fab-button color="danger">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </ion-fab-button>
+            <app-facebook-login
+              [action]="'connect'"
+              (LoginSuccessOrFailed)="socialLoginDone($event)"
+            ></app-facebook-login>
           </ion-col>
 
           <ion-col>
-            <app-twitter-login [action]="'connect'" (LoginSuccessOrFailed)="socialLoginDone($event)"></app-twitter-login>
+            <app-twitter-login
+              [action]="'connect'"
+              (LoginSuccessOrFailed)="socialLoginDone($event)"
+            ></app-twitter-login>
           </ion-col>
 
           <ion-col>
-            <app-facebook-login [action]="'connect'" (LoginSuccessOrFailed)="socialLoginDone($event)"></app-facebook-login>
+            <app-google-login
+              [action]="'connect'"
+              (LoginSuccessOrFailed)="socialLoginDone($event)"
+            ></app-google-login>
           </ion-col>
 
           <ion-col>
-            <app-google-login [action]="'connect'" (LoginSuccessOrFailed)="socialLoginDone($event)"></app-google-login>
+            <app-microsoft-login
+              [action]="'connect'"
+              (LoginSuccessOrFailed)="socialLoginDone($event)"
+            ></app-microsoft-login>
           </ion-col>
         </ion-row>
       </ion-card-content>

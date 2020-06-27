@@ -32,6 +32,22 @@
   --ion-color-contrast-rgb: var(--ion-color-authentication-contrast-rgb);
 }
 
+.ion-color-google {
+  --ion-color-base: var(--ion-color-google);
+}
+
+.ion-color-facebook {
+  --ion-color-base: var(--ion-color-facebook);
+}
+
+.ion-color-microsoft {
+  --ion-color-base: var(--ion-color-microsoft);
+}
+
+.ion-color-twitter {
+  --ion-color-base: var(--ion-color-twitter);
+}
+
 .timepicker {
   .timepicker__header {
     background-color: #3ab855 !important;

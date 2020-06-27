@@ -70,15 +70,12 @@ export class AuthenticationService {
       }));
   }
 
-  // public signInWithGoogle() {
-  //   return this.http.post(
-  //     `${environment.url}api/auth/external-login`,
-  //     { observe: 'response' }
-  //   )
-  // }
+  public signInWithSocial(platform: string) {
+    return this.http.get(`${environment.url}api/auth/connect/pwa/${platform}`);
+  }
 
-  public currentUser() {
-    return this.http.get<User>(`${environment.url}api/auth/current-user`).toPromise();
+  public currentUser(): Observable<string> {
+    return this.http.get<string>(`${environment.url}api/auth/current-user`);
   }
 
   /**
