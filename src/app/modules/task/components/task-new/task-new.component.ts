@@ -4,7 +4,7 @@ import { Task } from 'src/app/models/task.model';
 import { ModalController } from '@ionic/angular';
 import { TaskFormValues } from '../../forms/task-form/task-form-values.model';
 import { TaskService } from '../../task.service';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+//import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-task-new',
@@ -17,7 +17,7 @@ export class TaskNewComponent {
     private modalController: ModalController,
     private formBuilder: FormBuilder,
     private taskService: TaskService,
-    private readonly localNotifications: LocalNotifications,
+    //private readonly localNotifications: LocalNotifications,
   ) {
     this.formGroup = this.formBuilder.group({
       form: [],
@@ -39,12 +39,12 @@ export class TaskNewComponent {
     task.completed = taskForm.completed;
     task.startDate = this.getDateTime(taskForm.startDate, taskForm.startTime);
 
-    this.localNotifications.schedule({
-      text: 'Delayed ILocalNotification',
-      trigger: { at: new Date(task.startDate.getTime()) },
-      led: 'FF0000',
-      sound: null
-    });
+    // this.localNotifications.schedule({
+    //   text: 'Delayed ILocalNotification',
+    //   trigger: { at: new Date(task.startDate.getTime()) },
+    //   led: 'FF0000',
+    //   sound: null
+    // });
 
     task.endDate = this.getDateTime(taskForm.endDate, taskForm.endTime);
 

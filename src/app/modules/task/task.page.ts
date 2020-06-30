@@ -6,7 +6,7 @@ import { TaskNewComponent } from './components/task-new/task-new.component';
 import { TaskService } from './task.service';
 import { Task } from 'src/app/models/task.model';
 import { TaskDetailComponent } from './components/task-detail/task-detail.component';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+//import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -24,7 +24,7 @@ export class TaskPage implements OnInit, OnDestroy {
     public taskService: TaskService,
     private alertController: AlertController,
     private platform: Platform,
-    private localNotifications: LocalNotifications,
+    //private localNotifications: LocalNotifications,
   ) {
 
   }
@@ -33,10 +33,10 @@ export class TaskPage implements OnInit, OnDestroy {
     this.taskService.getTasks().subscribe();
     this.subscriptions.push(
       //this.platform.ready().then(() => {
-      this.localNotifications.on('trigger').subscribe(res => {
-        this.presentAlert('Your notifiations contains a secret = ');
+      //this.localNotifications.on('trigger').subscribe(res => {
+      //  this.presentAlert('Your notifiations contains a secret = ');
         //this.presentAlert('Your notifiations contains a secret = ' + res.trigger.at);
-      })
+      //})
       //});
     );
   }

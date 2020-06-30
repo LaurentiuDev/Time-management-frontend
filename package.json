@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "clearTextTraffic": "node create_network_config"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,8 @@
     "@angular/platform-browser-dynamic": "^9.1.3",
     "@angular/platform-server": "^9.1.3",
     "@angular/router": "^9.1.3",
+    "@capacitor/android": "^2.2.0",
+    "@capacitor/core": "2.2.0",
     "@ionic-native/core": "^5.19.0",
     "@ionic-native/document-viewer": "^5.24.0",
     "@ionic-native/local-notifications": "^5.25.0",
@@ -31,12 +34,8 @@
     "@ionic/angular": "^5.0.7",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
-    "cordova-android": "^8.1.0",
     "cordova-browser": "6.0.0",
-    "cordova-plugin-badge": "^0.8.8",
-    "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-ionic-webview": "^5.0.0",
-    "cordova-plugin-local-notification": "^0.9.0-beta.2",
     "cordova-plugin-whitelist": "^1.3.4",
     "core-js": "^3.6.4",
     "hammerjs": "^2.0.8",
@@ -58,6 +57,7 @@
     "@angular/compiler": "^9.1.3",
     "@angular/compiler-cli": "^9.1.3",
     "@angular/language-service": "^9.1.3",
+    "@capacitor/cli": "2.2.0",
     "@ionic/angular-toolkit": "~2.0.0",
     "@types/jasmine": "^3.5.8",
     "@types/jasminewd2": "~2.0.3",
@@ -84,7 +84,6 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-local-notification": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
@@ -93,8 +92,7 @@
       "cordova-plugin-ionic-webview": {}
     },
     "platforms": [
-      "browser",
-      "android"
+      "browser"
     ]
   }
 }

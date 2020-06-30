@@ -1,7 +1,8 @@
 {
   "name": "microday-frontend",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

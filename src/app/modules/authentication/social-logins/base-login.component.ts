@@ -61,7 +61,7 @@ export class BaseLoginComponent {
     if (message.data.messageSource != null)
       if (message.data.messageSource.indexOf('AUGURY_') > -1) return;
     // Filter out any other trash
-    if (message.data === '' || message.data == null) return;
+    if (message.data === '' || message.data == null || message.data.data === undefined) return;
 
     const result = JSON.parse(message.data) as LoginResult;
     const medium = this.pwaHelper.isPwa() ? 'pwa' : 'web';
