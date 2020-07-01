@@ -36,6 +36,11 @@ export const TABS_ROUTES: Routes = [
             loadChildren: () =>
               import('../profile/profile.module').then(m => m.ProfilePageModule)
           },
+          {
+            path: APPROUTES.about,
+            loadChildren: () =>
+                  import('../profile/components/about/about.module').then(m => m.AboutPageModule)
+          }
         ]
       },
       {

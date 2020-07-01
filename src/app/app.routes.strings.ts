@@ -7,5 +7,6 @@ export const APPROUTES = {
     task: 'task',
     statistics: 'statistics',
     profile: 'profile',
+    about: 'about',
     clasament: 'clasament'
 }

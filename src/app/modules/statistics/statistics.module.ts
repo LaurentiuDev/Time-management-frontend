@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { StatisticsPage } from './statistics.page';
 import { CoreModule } from 'src/app/core/core.module';
+import { ChartsModule } from 'ng2-charts';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CoreModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ChartsModule
   ],
   declarations: [StatisticsPage]
 })

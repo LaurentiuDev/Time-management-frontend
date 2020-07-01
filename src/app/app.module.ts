@@ -20,6 +20,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { createTranslateLoader } from './core/translate-loader-factory';
 //import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
+import 'chartjs-plugin-zoom';
+
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 const config: SocketIoConfig = { url: 'http://localhost:3001', options: {} };
 
