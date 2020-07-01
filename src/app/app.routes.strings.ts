@@ -8,5 +8,6 @@ export const APPROUTES = {
     statistics: 'statistics',
     profile: 'profile',
     about: 'about',
-    clasament: 'clasament'
+    clasament: 'clasament',
+    chat: 'chat'
 }

@@ -9,12 +9,12 @@
     <ion-item *ngFor="let user of this.userService.users | async; let i=index">
       <ion-label slot="start" class="clasament-index">{{ i + 1 }}.</ion-label>
       <ion-avatar slot="start">
-        <img src="../../../assets/images/default-profile-picture1.jpg">
+        <img src="../../../assets/images/{{i + 1}}.jpeg">
       </ion-avatar>
       <ion-label class="user-name">
         <h3>{{ user.firstName + ' ' + user.lastName }}</h3>
       </ion-label>
-      <ion-label slot="end" class="user-points"><p>{{ i + 1 * 10 }} points</p></ion-label>
+      <ion-label slot="end" class="user-points"><p>{{ 90 -  i * 10}} points</p></ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

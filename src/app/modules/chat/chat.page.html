@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Chat</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- <ion-content>
+    <ion-grid>
+      <ion-row *ngFor="let message of messages">
+        <ion-col>
+          <b>{{ message.clientuniqueid }}</b><br>
+          <span>{{ message.message }}</span>
+          <div class="time" class="ion-text-right">
+            <br>
+            {{ message.date | date:'short' }}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content> -->
+
+    <div class="messaging">
+      <div class="inbox_msg">
+        <div class="mesgs">
+          <div class="msg_history">
+            <div *ngFor="let msg of messages">
+            <div class="incoming_msg" *ngIf="msg.type == 'received'">
+              <div class="incoming_msg_img"> </div>
+              <div class="received_msg">
+                <div class="received_withd_msg">
+                  <p>
+                   {{msg.message}} 
+                  </p>
+                  <span class="time_date"> {{msg.date | date:'medium'}} </span>
+                </div>
+              </div>
+            </div>
+            <div class="outgoing_msg" *ngIf="msg.type == 'sent'">
+              <div class="sent_msg">
+                <p>
+                    {{msg.message}} 
+                </p>
+                <span class="time_date"> {{msg.date | date:'medium'}}</span>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="type_msg">
+            <div class="input_msg_write">
+              <input type="text" class="write_msg" [value]="txtMessage"
+              (input)="txtMessage=$event.target.value" (keydown.enter)="sendMessage()" placeholder="Type a message" />
+              <button class="msg_send_btn" type="button"  (click)="sendMessage()"><ion-icon name="send"></ion-icon></button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  

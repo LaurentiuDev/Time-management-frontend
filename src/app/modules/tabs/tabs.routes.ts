@@ -51,8 +51,17 @@ export const TABS_ROUTES: Routes = [
             loadChildren: () =>
               import('../clasament/clasament.module').then(m => m.ClasamentPageModule)
           },
-        ],
-        
+        ]
+      },
+      {
+        path: APPROUTES.chat,
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../chat/chat.module').then(m => m.ChatPageModule)
+          },
+        ]
       },
       {
         path: '',
